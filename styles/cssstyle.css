@@ -104,13 +104,13 @@ article.testimonials {
     right: 14.5%;
   }
 }
-.testimonial.bg-dark-gray {
+.testimonial.bg-gray-800 {
   background: #19202d;
 }
-.testimonial.bg-mid-gray {
+.testimonial.bg-gray-300 {
   background: #48556a;
 }
-.testimonial.bg-mid-purple {
+.testimonial.bg-purple-500 {
   background: #733fc8;
 }
 .testimonial.bg-white {
