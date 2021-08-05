@@ -24,7 +24,7 @@ body {
   padding: 2.4rem;
 }
 
-article.testimonials {
+section.testimonials {
   width: 100%;
   height: auto;
   display: grid;
@@ -34,14 +34,14 @@ article.testimonials {
   max-width: 45rem;
 }
 @media screen and (min-width: 768px) {
-  article.testimonials {
+  section.testimonials {
     max-width: 76.8rem;
     grid-template-columns: repeat(2, minmax(25rem, 1fr));
     grid-template-areas: "daniel daniel" "jeanette kira" "jonathan kira" "patrick patrick";
   }
 }
 @media screen and (min-width: 1200px) {
-  article.testimonials {
+  section.testimonials {
     grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
     max-width: 111rem;
     grid-template-areas: "daniel daniel jonathan kira" "jeanette patrick patrick kira";
