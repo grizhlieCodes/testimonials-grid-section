@@ -1,0 +1,232 @@
+@use 'mixins.scss' as *;
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+:root {
+  font-family: "Barlow Semi Condensed", sans-serif;
+  --medium: 400;
+  --normal: 500;
+  --bold: 700;
+  --light-grayish-blue: hsl(210, 46%, 95%);
+  --white-70: hsla(0, 0%, 100%, 0.7);
+  --white-50: hsla(0, 0%, 100%, 0.5);
+  --black-70: hsla(0, 0%, 0%, 0.7);
+  --light-bg: white;
+  --light-primary: #48556a;
+  --light-primary-70: hsla(217, 19%, 35%, 0.7);
+  --light-primary-50: hsla(217, 19%, 35%, 0.5);
+  --white: white;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--light-grayish-blue);
+  display: grid;
+  place-items: center;
+  padding: 2.4rem;
+}
+
+article.testimonials {
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr));
+  grid-auto-rows: min-content;
+  gap: 2.4rem 3rem;
+  max-width: 45rem;
+  //   grid-auto-flow: row dense;
+
+  @include mq(tablet) {
+    max-width: 76.8rem;
+    grid-template-columns: repeat(2, minmax(25rem, 1fr));
+    grid-template-areas:
+      "daniel daniel"
+      "jeanette kira"
+      "jonathan kira"
+      "patrick patrick";
+  }
+
+  @include mq(desktop) {
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    max-width: 111rem;
+    grid-template-areas:
+      "daniel daniel jonathan kira"
+      "jeanette patrick patrick kira";
+  }
+}
+
+@include mq(tablet) {
+  .testimonial {
+    &.daniel {
+      grid-area: daniel;
+    }
+
+    &.jonathan {
+      grid-area: jonathan;
+    }
+
+    &.jeanette {
+      grid-area: jeanette;
+    }
+
+    &.patrick {
+      grid-area: patrick;
+    }
+
+    &.kira {
+      grid-area: kira;
+    }
+  }
+}
+
+//BASE STYLING
+
+.testimonial {
+  @include flex(column nowrap, start, start);
+  gap: 1.8rem;
+  padding: 2.4rem 3rem 3rem;
+  border-radius: 0.8rem;
+  box-shadow: 40px 60px 50px -47px rgba(72, 85, 106, 0.247378);
+  position: relative;
+  z-index: -2;
+
+  &.highlight {
+    &.bg-mid-purple {
+      &::after {
+        background-image: url(/images/bg-pattern-quotation.svg);
+      }
+    }
+    &.dark:not(.bg-mid-purple) {
+      &::after {
+        background-image: url(/images/bg-pattern-quotation-white.svg);
+        opacity: 0.15;
+      }
+    }
+    &.light:not(.bg-mid-puple) {
+      &::after {
+        background-image: url(/images/bg-pattern-quotation-black.svg);
+        opacity: 0.1;
+      }
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 10.4rem;
+      height: 10.2rem;
+      top: 0;
+      right: 7.3%;
+      z-index: -1;
+      transition: right 250ms;
+      background-repeat: no-repeat;
+      @include mq(tablet) {
+        right: 14.5%;
+      }
+    }
+  }
+
+  //Helper classes - card backgrounds
+  &.bg-dark-gray {
+    background: #19202d;
+  }
+  &.bg-mid-gray {
+    background: #48556a;
+  }
+  &.bg-mid-purple {
+    background: #733fc8;
+  }
+  &.bg-white {
+    background: var(--white);
+  }
+
+  // Light text color styling
+  &.light {
+    .testimonial__author-title {
+      color: var(--light-primary-50);
+    }
+
+    .testimonial__highlight {
+      color: var(--light-primary);
+    }
+
+    .testimonial__author-name {
+      color: var(--light-primary);
+    }
+
+    .testimonial__description {
+      color: var(--light-primary-70);
+    }
+  }
+
+  //Dark text color styling
+  &.dark {
+    .testimonial__author-title {
+      color: var(--white-50);
+    }
+
+    .testimonial__highlight {
+      color: var(--white);
+    }
+
+    .testimonial__author-name {
+      color: var(--white);
+    }
+
+    .testimonial__description {
+      color: var(--white-70);
+    }
+  }
+
+  .testimonial__author {
+    @include flex(row nowrap, start, start);
+    width: 100%;
+    height: auto;
+    gap: 1.7rem;
+
+    .testimonial__author-text {
+      @include flex(column nowrap, start, start);
+      height: auto;
+      width: 100%;
+      gap: 0.4rem;
+    }
+  }
+
+  .testimonial__content {
+    @include flex(column nowrap, start, start);
+    gap: 1.6rem;
+  }
+
+  // LAYOUT STYLING
+  .testimonial__author-img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    border: hsla(0, 0%, 100%, 0.5) solid 0.2rem;
+  }
+
+  .testimonial__author-name {
+    font-size: 1.3rem;
+    line-height: 1.3rem;
+    font-weight: var(--medium);
+  }
+
+  .testimonial__author-title {
+    font-size: 1.1rem;
+    line-height: 1.1rem;
+    font-weight: var(--medium);
+    opacity: 0.5;
+  }
+
+  .testimonial__highlight {
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  .testimonial__description {
+    opacity: 0.7;
+    font-size: 1.3rem;
+    line-height: 1.8rem;
+    font-weight: var(--medium);
+  }
+}
